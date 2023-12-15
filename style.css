@@ -1,0 +1,168 @@
+body {
+  background-color: #333333;
+  color: white;
+
+}
+
+.title {
+  width: 100%;
+  text-align: CENTER;
+  font-family: CURSIVE;
+  font-size: 32px;
+}
+
+.box {
+  height: 156px;
+  width: 156px;
+  border: solid white 2px;
+  background-color: #333333;
+  display: grid;
+  grid-template-columns: auto auto auto;
+}
+
+.grid-container {
+  min-width: 300px;
+  overflow: hidden;
+}
+
+#main {
+  height: 480px;
+  width: 480px;
+  border: solid white 4px;
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  margin-top: 20px;
+}
+
+.cell {
+  height: 50px;
+  width: 50px;
+  border: solid white 1px;
+  text-align: center;
+  background-color: #333333;
+  text-align: center;
+  font-size: x-large;
+  font-weight: bold;
+}
+
+input {
+  height: 45px;
+  width: 44px;
+  border: none;
+  text-align: center;
+  font-size: x-large;
+  font-weight: bold;
+  background-color: #333333;
+  color: white;
+  outline: none;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: space-around;
+  margin: auto;
+  margin-top: 20px;
+  max-width: 500px;
+}
+
+button {
+  height: 50px;
+  width: 150px;
+  font-size: 18px;
+  font-weight: bold;
+  background-color: red;
+  border: solid 2px black;
+  border-radius: 30px;
+  color: white;
+  /* position: absolute; */
+  cursor: pointer;
+}
+
+#start {
+  top: 26%;
+  left: 5%;
+}
+
+#replay {
+  top: 45%;
+  left: 5%;
+}
+
+#answer {
+  top: 65%;
+  left: 5%;
+}
+
+#game_type {
+  margin: auto;
+  max-width: 500px;
+  text-align: center;
+}
+
+.label {
+  height: 15px;
+  width: 15px;
+  cursor: pointer;
+}
+
+#help {
+  margin-top: 20px;
+  left: 0%;
+  top: 150%;
+}
+
+#lives {
+  margin-top: 20px;
+  /* position: absolute; */
+  top: 13%;
+  left: 72%;
+  color: orangered;
+  font-weight: bold;
+  font-size: x-large;
+}
+
+#timer {
+  top: 10%;
+  /* position: absolute; */
+  left: 3%;
+  font-size: x-large;
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+
+@media only screen and (max-width: 500px) {
+  button {
+    width: 120px;
+  }
+
+  #main {
+    height: 341px;
+    width: 341px;
+  }
+  .box {
+    height: 110px;
+    width: 110px;
+  }
+  .cell {
+    height: 35px;
+    width: 35px;
+  }
+  input {
+    height: 30px;
+    width: 30px;
+  }
+}
