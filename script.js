@@ -1,3 +1,88 @@
+let youtubeVideoIDs = [
+    "cH-dDzqsiiU",
+    "Cyq-0RZNrmw",
+    "WdPnGoLKZzk",
+    "7ZZGLiCgBXE",
+    // "cScUz023JtQ",
+    "6tcG4X1B8Vw",
+    "FA3L57pQ9Ks",
+    "7ZQyW5eRU1Q",
+    "W48uPkSzgu4"
+]
+
+function getRandomValue(arr) {
+    if (!arr.length) {
+      return null; // Return null for an empty array
+    }
+  
+    const randomIndex = Math.floor(Math.random() * arr.length);
+    return arr[randomIndex];
+  }
+
+// 2. This code loads the IFrame Player API code asynchronously.
+var tag = document.createElement('script');
+
+tag.src = "https://www.youtube.com/iframe_api";
+var firstScriptTag = document.getElementsByTagName('script')[0];
+firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+// 3. This function creates an <iframe> (and YouTube player)
+//    after the API code downloads.
+var player;
+function onYouTubeIframeAPIReady() {
+  player = new YT.Player('player', {
+    height: '390',
+    width: '640',
+    videoId: getRandomValue(youtubeVideoIDs),
+    playerVars: {
+      'playsinline': 1,
+      'controls': 0,
+      'autoplay': 0,
+      'rel': 0
+    },
+    events: {
+      'onStateChange': onPlayerStateChange
+    }
+  });
+}
+
+// 4. The API will call this function when the video player is ready.
+function onPlayerReady(event) {
+//   event.target.playVideo();
+}
+
+// 5. The API calls this function when the player's state changes.
+//    The function indicates that when playing a video (state=1),
+//    the player should play for six seconds and then stop.
+var done = false;
+function onPlayerStateChange(event) {
+  if (event.data == YT.PlayerState.ENDED) {
+    player.destroy();
+    const videoContainer = document.getElementById("video-container");
+    videoContainer.style.visibility = "hidden"
+    if(level=="easy"){
+        for(var i=0;i<81;i++){
+            document.getElementById((i+1).toString()).value=easy[choosen][i];
+        }
+    }
+    else if(level=="medium"){
+        for(var i=0;i<81;i++){
+            document.getElementById((i+1).toString()).value=medium[choosen][i];
+        }
+    }
+    else if(level=="hard"){
+        for(var i=0;i<81;i++){
+            document.getElementById((i+1).toString()).value=hard[choosen][i];
+        }
+    }
+    else{
+        alert("first choose the game and start it !!");
+    }
+  }
+}
+// function stopVideo() {
+//   player.stopVideo();
+// }
 count=0
 for (var i=0;i<9;i++){
     count=9*i;
@@ -12,6 +97,7 @@ function help(){
 }
 var level;
 var choosen;
+var isGameStarted = false;
 
 
 // easy_level board create
@@ -35,6 +121,7 @@ hard=['1657894322975183469738216548473125964637291582846759319235461788513642976
 
 
 function start(){
+    isGameStarted = true;
     for(var i=0;i<6;i++){
         document.getElementsByClassName("label")[i].setAttribute("onclick","return false;");
     }
@@ -192,32 +279,18 @@ else{
 
 //answer
 function answer(){
-    if(level=="easy"){
-        for(var i=0;i<81;i++){
-            document.getElementById((i+1).toString()).value=easy[choosen][i];
-        }
-    }
-    else if(level=="medium"){
-        for(var i=0;i<81;i++){
-            document.getElementById((i+1).toString()).value=medium[choosen][i];
-        }
-    }
-    else if(level=="hard"){
-        for(var i=0;i<81;i++){
-            document.getElementById((i+1).toString()).value=hard[choosen][i];
-        }
-    }
-    else{
+    if(isGameStarted === false) {
         alert("first choose the game and start it !!");
+    } else{
+        const videoContainer = document.getElementById("video-container");
+        videoContainer.style.visibility = "visible"
+        player.playVideo();
     }
 }
 //new game
 
 function replay(){
-    for(var i=0;i<81;i++){
-        document.getElementById((i+1).toString()).value='';
-    }
-    start();
+    window.location.reload();
 }
 
 
